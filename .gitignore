@@ -1,0 +1,5 @@
+*/out/*
+*.iml
+*.class
+.idea/*
+credentials.txt

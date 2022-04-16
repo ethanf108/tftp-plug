@@ -79,6 +79,10 @@ public class TftpRouteServer {
                         case 1 -> {
                             final String filename = readNullTerminatedString(in);
                             final String mode = readNullTerminatedString(in);
+                            if(!mode.equalsIgnoreCase("octet")){
+                                this.sendError(packet.getAddress(), packet.getPort(), 2, "Octet only boyo");
+                                break;
+                            }
                             Map<String, String> options = new HashMap<>();
                             while (true) {
                                 try {
@@ -192,7 +196,7 @@ public class TftpRouteServer {
     public static void main(String[] args) throws IOException {
         TftpRouteServer server = new TftpRouteServer(69);
         if (args.length > 0 && args[0].equals("-v")) {
-
+            server.debug = true;
         }
     }
 }

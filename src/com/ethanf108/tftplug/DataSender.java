@@ -28,6 +28,7 @@ public class DataSender extends Thread {
         this.in = in;
         this.blockSize = blockSize;
         this.ackQueue = new ArrayBlockingQueue<>(4, false);
+        this.setDaemon(true);
         this.start();
     }
 

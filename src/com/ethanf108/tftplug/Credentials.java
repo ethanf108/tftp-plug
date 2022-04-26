@@ -6,8 +6,7 @@ import java.io.InputStream;
 public class Credentials {
 
     public static final String
-            AUTH_USERNAME,
-            AUTH_PASSWORD,
+            PXE_SECRET,
             AUTH_URL,
             TFTP_PATH;
 
@@ -25,9 +24,8 @@ public class Credentials {
             System.err.println("Could not read creds file. abort.");
             System.exit(1);
         }
-        AUTH_USERNAME = creds[0];
-        AUTH_PASSWORD = creds[1];
-        AUTH_URL = creds[2];
-        TFTP_PATH = creds[3];
+        PXE_SECRET = creds[0];
+        AUTH_URL = creds[1];
+        TFTP_PATH = creds[2];
     }
 }

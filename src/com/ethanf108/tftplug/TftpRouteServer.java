@@ -29,7 +29,7 @@ public class TftpRouteServer {
         this.activeConnections = new HashMap<>();
         this.isRunning = true;
         this.listenThread.start();
-        this.plugManager = new PlugManager(Credentials.AUTH_USERNAME, Credentials.AUTH_PASSWORD);
+        this.plugManager = new PlugManager(Credentials.PXE_SECRET);
     }
 
     private static String readNullTerminatedString(DataInputStream in) throws IOException {

@@ -220,7 +220,6 @@ public class TftpRouteServer {
             }
         }
         toRemove.forEach(this.activeConnections::remove);
-        System.out.println(this.activeConnections.size());
     }
 
     public void stop() {

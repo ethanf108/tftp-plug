@@ -7,7 +7,6 @@ public class Credentials {
 
     public static final String
             PXE_SECRET,
-            AUTH_URL,
             TFTP_PATH;
 
     static {
@@ -25,7 +24,6 @@ public class Credentials {
             System.exit(1);
         }
         PXE_SECRET = creds[0];
-        AUTH_URL = creds[1];
-        TFTP_PATH = creds[2];
+        TFTP_PATH = creds[1];
     }
 }

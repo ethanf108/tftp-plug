@@ -13,7 +13,7 @@ import java.util.concurrent.BlockingQueue;
 
 public class TftpRouteServer {
 
-    public static final int MAX_CONNECTIONS = 4;
+    public static final int MAX_CONNECTIONS = 16;
     public static final long MAX_TIMEOUT = 10_000;
 
     final DatagramSocket socket;
@@ -129,7 +129,7 @@ public class TftpRouteServer {
                         InputStream readStream;
                         long size;
                         File file = new File(Credentials.TFTP_PATH + filename);
-                        if (!file.exists()) {
+                        if (!file.exists() || file.isDirectory()) {
                             this.sendError(packet.getAddress(), packet.getPort(), 1, "File not found :( sorry");
                             break;
                         }
@@ -220,7 +220,6 @@ public class TftpRouteServer {
             }
         }
         toRemove.forEach(this.activeConnections::remove);
-        System.out.println(this.activeConnections.size());
     }
 
     public void stop() {
@@ -228,6 +227,7 @@ public class TftpRouteServer {
     }
 
     public static void main(String[] args) throws IOException {
+	System.out.println("Starting Server: " + new Date().toString());
         TftpRouteServer server = new TftpRouteServer(69);
         if (args.length > 0 && args[0].equals("-v")) {
             server.debug = true;
